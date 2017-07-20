@@ -4,20 +4,29 @@ enum Civility {
     Ms = 'Ms'
 };
 
-function fullName(civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]): string{
-    let fullName = civility + ' ' + lastName;
-    if (firstName) {
-        fullName += ' ' + firstName + ' ' + otherFirstNames.join(' ');
+class Person {
+
+    protected civility: Civility;
+    protected lastName: string;
+    protected firstName: string;
+    protected otherFirstNames: string[];
+
+    constructor(civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]) {
+        this.civility = civility;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.otherFirstNames = otherFirstNames;
     }
-    return fullName;
+
+    fullName(): string {
+        let fullName = this.civility + ' ' + this.lastName;
+        if (this.firstName) {
+            fullName += ' ' + this.firstName + ' ' + this.otherFirstNames.join(' ');
+        }
+        return fullName;
+    }
 }
 
-const ex0 = fullName(undefined, 'Coma Delperier');
-const ex1 = fullName(Civility.Mr, 'Coma Delperier');
-const ex2 = fullName(Civility.Mr, 'Coma Delperier', 'Robin');
-const ex3 = fullName(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+const person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent')
 
-console.log(ex0);
-console.log(ex1);
-console.log(ex2);
-console.log(ex3);
+console.log(person.fullName());
