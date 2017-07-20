@@ -1,4 +1,10 @@
-function fullName(civility: string = '(Mr or Ms)', lastName: string, firstName?: string, ...otherFirstNames: string[]): string{
+enum Civility {
+    Unknown = '(Mr or Ms)',
+    Mr = 'Mr',
+    Ms = 'Ms'
+};
+
+function fullName(civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]): string{
     let fullName = civility + ' ' + lastName;
     if (firstName) {
         fullName += ' ' + firstName + ' ' + otherFirstNames.join(' ');
@@ -7,9 +13,9 @@ function fullName(civility: string = '(Mr or Ms)', lastName: string, firstName?:
 }
 
 const ex0 = fullName(undefined, 'Coma Delperier');
-const ex1 = fullName('Mr', 'Coma Delperier');
-const ex2 = fullName('Mr', 'Coma Delperier', 'Robin');
-const ex3 = fullName('Mr', 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+const ex1 = fullName(Civility.Mr, 'Coma Delperier');
+const ex2 = fullName(Civility.Mr, 'Coma Delperier', 'Robin');
+const ex3 = fullName(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
 
 console.log(ex0);
 console.log(ex1);
