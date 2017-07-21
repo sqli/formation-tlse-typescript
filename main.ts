@@ -4,12 +4,20 @@ enum Civility {
     Ms = 'Ms'
 };
 
-class Person {
+interface PersonInterface {
+    readonly civility: Civility;
+    readonly lastName: string;
+    readonly firstName?: string;
+    readonly otherFirstNames?: string[];
+    fullName(): string;
+}
 
-    protected civility: Civility;
-    protected lastName: string;
-    protected firstName: string;
-    protected otherFirstNames: string[];
+class Person implements PersonInterface{
+
+    civility: Civility;
+    lastName: string;
+    firstName?: string;
+    otherFirstNames?: string[];
 
     constructor(civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]) {
         this.civility = civility;
