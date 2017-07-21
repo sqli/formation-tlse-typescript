@@ -12,7 +12,7 @@ interface PersonInterface {
     fullName(): string;
 }
 
-class Person implements PersonInterface{
+abstract class Person implements PersonInterface{
 
     private static _persons: Person[] = [];
 
@@ -72,8 +72,6 @@ class Employee extends Person {
 
 }
 
-const person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
 const employee = new Employee('Technical Lead', 'SQLI', Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
 
-console.log(person.fullName());
 console.log(employee.getPitch());

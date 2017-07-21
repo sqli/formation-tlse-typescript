@@ -74,8 +74,6 @@ var Employee = (function (_super) {
     };
     return Employee;
 }(Person));
-var person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
 var employee = new Employee('Technical Lead', 'SQLI', Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
-console.log(person.fullName());
 console.log(employee.getPitch());
 //# sourceMappingURL=main.js.map
