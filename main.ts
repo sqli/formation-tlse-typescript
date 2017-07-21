@@ -55,7 +55,25 @@ class Person implements PersonInterface{
     }
 }
 
-const person1 = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
-const person2 = new Person(Civility.Ms, 'Delevingne', 'Cara');
+class Employee extends Person {
 
-console.log(Person.findAll());
+    _jobTitle: string;
+    _companyName: string;
+
+    constructor(jobTitle: string, companyName: string, civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]) {
+        super(civility, lastName, firstName, ...otherFirstNames);
+        this._jobTitle = jobTitle;
+        this._companyName = companyName;
+    }
+
+    getPitch(): string {
+        return `Hello, my name is ${this.fullName()} and I'm ${this._jobTitle} for ${this._companyName}`;
+    }
+
+}
+
+const person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+const employee = new Employee('Technical Lead', 'SQLI', Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+
+console.log(person.fullName());
+console.log(employee.getPitch());
