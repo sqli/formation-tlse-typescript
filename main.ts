@@ -5,36 +5,50 @@ enum Civility {
 };
 
 interface PersonInterface {
-    readonly civility: Civility;
-    readonly lastName: string;
-    readonly firstName?: string;
-    readonly otherFirstNames?: string[];
+    readonly _civility: Civility;
+    readonly _lastName: string;
+    readonly _firstName?: string;
+    readonly _otherFirstNames?: string[];
     fullName(): string;
 }
 
 class Person implements PersonInterface{
 
-    civility: Civility;
-    lastName: string;
-    firstName?: string;
-    otherFirstNames?: string[];
+    readonly _civility: Civility;
+    _lastName: string;
+    readonly _firstName?: string;
+    readonly _otherFirstNames?: string[];
 
     constructor(civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]) {
-        this.civility = civility;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.otherFirstNames = otherFirstNames;
+        this._civility = civility;
+        this._lastName = lastName;
+        this._firstName = firstName;
+        this._otherFirstNames = otherFirstNames;
+    }
+
+    get lastName(): string {
+        return this._lastName;
+    }
+
+    set lastName(newLastName: string) {
+        if (newLastName) {
+            this._lastName = newLastName;
+        } else {
+            console.log('The new last name should not be empty');
+        }
     }
 
     fullName(): string {
-        let fullName = this.civility + ' ' + this.lastName;
-        if (this.firstName) {
-            fullName += ' ' + this.firstName + ' ' + this.otherFirstNames.join(' ');
+        let fullName = this._civility + ' ' + this._lastName;
+        if (this._firstName) {
+            fullName += ' ' + this._firstName + ' ' + this._otherFirstNames.join(' ');
         }
         return fullName;
     }
 }
 
-const person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent')
+const person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+
+person.lastName = '';
 
 console.log(person.fullName());
