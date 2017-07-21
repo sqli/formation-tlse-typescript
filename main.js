@@ -74,6 +74,21 @@ var Employee = (function (_super) {
     };
     return Employee;
 }(Person));
+var CrudRepository = (function () {
+    function CrudRepository() {
+    }
+    CrudRepository.prototype.create = function (item) {
+        // send to the API
+    };
+    CrudRepository.prototype.findAll = function () {
+        // Retreive with API
+        return [];
+    };
+    return CrudRepository;
+}());
+var employeeRepo = new CrudRepository();
 var employee = new Employee('Technical Lead', 'SQLI', Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
-console.log(employee.getPitch());
+employeeRepo.create(employee);
+var employees = employeeRepo.findAll();
+console.log(employees);
 //# sourceMappingURL=main.js.map

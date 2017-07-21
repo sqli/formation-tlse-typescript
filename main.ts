@@ -12,7 +12,7 @@ interface PersonInterface {
     fullName(): string;
 }
 
-abstract class Person implements PersonInterface{
+abstract class Person implements PersonInterface {
 
     private static _persons: Person[] = [];
 
@@ -26,7 +26,7 @@ abstract class Person implements PersonInterface{
         this._lastName = lastName;
         this._firstName = firstName;
         this._otherFirstNames = otherFirstNames;
-
+        
         Person._persons.push(this);
     }
 
@@ -72,6 +72,22 @@ class Employee extends Person {
 
 }
 
+class CrudRepository<T extends Person> {
+    create(item: T): void {
+        // send to the API
+    }
+    findAll(): T[] {
+        // Retreive with API
+        return [];
+    }
+}
+
+const employeeRepo = new CrudRepository<Employee>();
+
 const employee = new Employee('Technical Lead', 'SQLI', Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
 
-console.log(employee.getPitch());
+employeeRepo.create(employee);
+
+const employees = employeeRepo.findAll();
+
+console.log(employees);
