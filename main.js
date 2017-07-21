@@ -16,6 +16,7 @@ var Person = (function () {
         this._lastName = lastName;
         this._firstName = firstName;
         this._otherFirstNames = otherFirstNames;
+        Person._persons.push(this);
     }
     Object.defineProperty(Person.prototype, "lastName", {
         get: function () {
@@ -39,9 +40,13 @@ var Person = (function () {
         }
         return fullName;
     };
+    Person.findAll = function () {
+        return Person._persons;
+    };
+    Person._persons = [];
     return Person;
 }());
-var person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
-person.lastName = '';
-console.log(person.fullName());
+var person1 = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+var person2 = new Person(Civility.Ms, 'Delevingne', 'Cara');
+console.log(Person.findAll());
 //# sourceMappingURL=main.js.map

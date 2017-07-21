@@ -14,6 +14,8 @@ interface PersonInterface {
 
 class Person implements PersonInterface{
 
+    private static _persons: Person[] = [];
+
     readonly _civility: Civility;
     _lastName: string;
     readonly _firstName?: string;
@@ -24,6 +26,8 @@ class Person implements PersonInterface{
         this._lastName = lastName;
         this._firstName = firstName;
         this._otherFirstNames = otherFirstNames;
+
+        Person._persons.push(this);
     }
 
     get lastName(): string {
@@ -45,10 +49,13 @@ class Person implements PersonInterface{
         }
         return fullName;
     }
+
+    static findAll(): Person[] {
+        return Person._persons;
+    }
 }
 
-const person = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+const person1 = new Person(Civility.Mr, 'Coma Delperier', 'Robin', 'Franck', 'Florent');
+const person2 = new Person(Civility.Ms, 'Delevingne', 'Cara');
 
-person.lastName = '';
-
-console.log(person.fullName());
+console.log(Person.findAll());
