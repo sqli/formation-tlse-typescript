@@ -9,7 +9,7 @@ class Employee extends Person {
     @Length(3, 20)
     _companyName: string;
 
-    constructor(jobTitle: string, companyName: string, civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]) {
+    constructor(jobTitle: string, companyName: string, civility: Civility = Civility.Unknown, lastName: string | string[], firstName?: string, ...otherFirstNames: string[]) {
         super(civility, lastName, firstName, ...otherFirstNames);
         this._jobTitle = jobTitle;
         this._companyName = companyName;

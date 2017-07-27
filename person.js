@@ -38,7 +38,14 @@ define(["require", "exports"], function (require, exports) {
             configurable: true
         });
         Person.prototype.fullName = function () {
-            var fullName = this._civility + ' ' + this._lastName;
+            var lastName;
+            if (this._lastName instanceof Array) {
+                lastName = this._lastName.join(' ');
+            }
+            else {
+                lastName = this._lastName.toString();
+            }
+            var fullName = this._civility + ' ' + lastName;
             if (this._firstName) {
                 fullName += ' ' + this._firstName + ' ' + this._otherFirstNames.join(' ');
             }
