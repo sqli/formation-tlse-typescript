@@ -1,8 +1,12 @@
+import { Length } from './length.decorator';
 import { Person, Civility } from './person';
 
 class Employee extends Person {
 
+    @Length(3, 20)
     _jobTitle: string;
+    
+    @Length(3, 20)
     _companyName: string;
 
     constructor(jobTitle: string, companyName: string, civility: Civility = Civility.Unknown, lastName: string, firstName?: string, ...otherFirstNames: string[]) {

@@ -8,7 +8,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./person"], function (require, exports, person_1) {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+define(["require", "exports", "./length.decorator", "./person"], function (require, exports, length_decorator_1, person_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Employee = (function (_super) {
@@ -27,6 +33,12 @@ define(["require", "exports", "./person"], function (require, exports, person_1)
         Employee.prototype.getPitch = function () {
             return "Hello, my name is " + this.fullName() + " and I'm " + this._jobTitle + " for " + this._companyName;
         };
+        __decorate([
+            length_decorator_1.Length(3, 20)
+        ], Employee.prototype, "_jobTitle", void 0);
+        __decorate([
+            length_decorator_1.Length(3, 20)
+        ], Employee.prototype, "_companyName", void 0);
         return Employee;
     }(person_1.Person));
     exports.default = Employee;
