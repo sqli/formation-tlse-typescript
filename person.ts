@@ -1,3 +1,5 @@
+import { LastName } from './lastname.alias';
+
 enum Civility {
     Unknown = '(Mr or Ms)',
     Mr = 'Mr',
@@ -6,7 +8,7 @@ enum Civility {
 
 interface PersonInterface {
     readonly _civility: Civility;
-    readonly _lastName: string | string[];
+    readonly _lastName: LastName;
     readonly _firstName?: string;
     readonly _otherFirstNames?: string[];
     fullName(): string;
@@ -17,11 +19,11 @@ abstract class Person implements PersonInterface {
     private static _persons: Person[] = [];
 
     readonly _civility: Civility;
-    _lastName: string | string[];
+    _lastName: LastName;
     readonly _firstName?: string;
     readonly _otherFirstNames?: string[];
 
-    constructor(civility: Civility = Civility.Unknown, lastName: string | string[], firstName?: string, ...otherFirstNames: string[]) {
+    constructor(civility: Civility = Civility.Unknown, lastName: LastName, firstName?: string, ...otherFirstNames: string[]) {
         this._civility = civility;
         this._lastName = lastName;
         this._firstName = firstName;
@@ -30,11 +32,11 @@ abstract class Person implements PersonInterface {
         Person._persons.push(this);
     }
 
-    get lastName(): string | string[] {
+    get lastName(): LastName {
         return this._lastName;
     }
 
-    set lastName(newLastName: string | string[]) {
+    set lastName(newLastName: LastName) {
         if (newLastName) {
             this._lastName = newLastName;
         } else {
